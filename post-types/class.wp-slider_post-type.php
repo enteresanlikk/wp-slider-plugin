@@ -59,7 +59,7 @@ if(!class_exists('WP_Slider_CPT')) {
         }
 
         public function add_inner_meta_boxes($post) {
-            require_once(WP_SLIDER_PATH . 'views/wp-slider_metabox.php');
+            require_once(WP_SLIDER_PATH . 'views/metabox.php');
         }
 
         public function save_post($post_id) {

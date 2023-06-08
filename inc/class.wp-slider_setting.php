@@ -15,7 +15,8 @@ if(!class_exists('WP_Slider_Settings')) {
         public function admin_init() {
             register_setting(
                 'wp_slider_group',
-                'wp_slider_settings'
+                'wp_slider_settings',
+                array($this, 'validate')
             );
 
             add_settings_section(
@@ -82,6 +83,31 @@ if(!class_exists('WP_Slider_Settings')) {
                     'label_for' => 'wp_slider_style'
                 )
             );
+        }
+
+        public function validate($input) {
+            $output = array();
+
+            foreach($input as $key => $value) {
+                switch ($key) {
+                    case 'wp_slider_title':
+                        if(empty($value)) {
+                            add_settings_error(
+                                'wp_slider_settings',
+                                'wp_slider_title_error',
+                                __('Please, write title', 'wp-slider'),
+                                'error'
+                            );
+                        }
+                        $output[$key] = sanitize_text_field($value);
+                        break;
+                    default:
+                        $output[$key] = sanitize_text_field($value);
+                        break;
+                }
+            }
+
+            return $output;
         }
 
         public function shortcode_callback() { ?>

@@ -16,6 +16,8 @@ if(!class_exists('WP_Slider')) {
         function __construct() {
             $this->define_constans();
 
+            require_once(WP_SLIDER_PATH . 'inc/functions.php');
+
             add_action('admin_menu', array($this, 'add_admin_menu'));
 
             require_once(WP_SLIDER_PATH . 'post-types/class.wp-slider_post-type.php');
@@ -23,6 +25,17 @@ if(!class_exists('WP_Slider')) {
 
             require_once(WP_SLIDER_PATH . 'inc/class.wp-slider_setting.php');
             $wp_slider_settings = new WP_Slider_Settings();
+
+            require_once(WP_SLIDER_PATH . 'shortcodes/class.shortcode.php');
+            $wp_slider_shortcode = new WP_Slider_Shortcode();
+
+            add_action(
+                'wp_enqueue_scripts',
+                array($this, 'register_scripts'),
+                999
+            );
+
+            add_action('admin_enqueue_scripts', array($this, 'register_admin_scripts'));
         }
 
         public function define_constans() {
@@ -80,7 +93,58 @@ if(!class_exists('WP_Slider')) {
         }
 
         public function admin_settings_page() {
+            if(!current_user_can('manage_options')) {
+                return;
+            }
+
+            if(isset($_GET['settings-updated'])) {
+                add_settings_error(
+                    'wp_slider_settings',
+                    'wp_slider_message',
+                    __('Settings Saved', 'wp-slider'),
+                    'success'
+                );
+            }
+            settings_errors('wp_slider_settings');
+
             require_once(WP_SLIDER_PATH.'views/settings-page.php');
+        }
+
+        public function register_scripts() {
+            wp_register_script(
+                'wp-slider-main-script',
+                WP_SLIDER_URL.'assets/js/shortcode.js',
+                array(
+                    'jquery'
+                ),
+                WP_SLIDER_VERSION,
+                true
+            );
+            wp_register_style(
+                'wp-slider-swiper-style',
+                'https://cdn.jsdelivr.net/npm/swiper@9.3.2/swiper-bundle.min.css',
+                array(),
+                WP_SLIDER_VERSION,
+                'all'
+            );
+            wp_register_style(
+                'wp-slider-shortcode-style',
+                WP_SLIDER_URL.'assets/css/shortcode.css',
+                array(),
+                WP_SLIDER_VERSION,
+                'all'
+            );
+        }
+
+        public function register_admin_scripts() {
+            global $typenow;
+
+            if($typenow == 'wp-slider') {
+                wp_enqueue_style(
+                    'wp-slider-admin-style',
+                    WP_SLIDER_URL.'assets/css/admin.css'
+                );
+            }
         }
     }
 }
