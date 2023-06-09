@@ -16,6 +16,8 @@ if(!class_exists('WP_Slider')) {
         function __construct() {
             $this->define_constans();
 
+            $this->load_textdomain();
+
             require_once(WP_SLIDER_PATH . 'inc/functions.php');
 
             add_action('admin_menu', array($this, 'add_admin_menu'));
@@ -54,7 +56,17 @@ if(!class_exists('WP_Slider')) {
         }
 
         public function uninstall() {
+            delete_option('wp_slider_settings');
 
+            $slides = get_posts(array(
+                'post_type' => 'wp-slider',
+                'numberposts' => -1,
+                'post_status' => 'any'
+            ));
+
+            foreach($slides as $slide) {
+                wp_delete_post($slide->ID, true);
+            }
         }
 
         public function add_admin_menu() {
@@ -63,8 +75,8 @@ if(!class_exists('WP_Slider')) {
              * add_options_page -> Setting tab
              */
             add_menu_page(
-                __('WP Slider Options', 'wp-slider'),
-                __('WP Slider', 'wp-slider'),
+                esc_html__('WP Slider Options', 'wp-slider'),
+                esc_html__('WP Slider', 'wp-slider'),
                 'manage_options',
                 'wp-slider-admin',
                 array($this, 'admin_settings_page'),
@@ -73,8 +85,8 @@ if(!class_exists('WP_Slider')) {
 
             add_submenu_page(
                 'wp-slider-admin',
-                __('WP Manage Slides', 'wp-slider'),
-                __('WP Manage Slides', 'wp-slider'),
+                esc_html__('WP Manage Slides', 'wp-slider'),
+                esc_html__('WP Manage Slides', 'wp-slider'),
                 'manage_options',
                 'edit.php?post_type=wp-slider',
                 null,
@@ -83,8 +95,8 @@ if(!class_exists('WP_Slider')) {
 
             add_submenu_page(
                 'wp-slider-admin',
-                __('WP Add New Slide', 'wp-slider'),
-                __('WP Add New Slide', 'wp-slider'),
+                esc_html__('WP Add New Slide', 'wp-slider'),
+                esc_html__('WP Add New Slide', 'wp-slider'),
                 'manage_options',
                 'post-new.php?post_type=wp-slider',
                 null,
@@ -101,7 +113,7 @@ if(!class_exists('WP_Slider')) {
                 add_settings_error(
                     'wp_slider_settings',
                     'wp_slider_message',
-                    __('Settings Saved', 'wp-slider'),
+                    esc_html__('Settings Saved', 'wp-slider'),
                     'success'
                 );
             }
@@ -145,6 +157,14 @@ if(!class_exists('WP_Slider')) {
                     WP_SLIDER_URL.'assets/css/admin.css'
                 );
             }
+        }
+
+        public function load_textdomain() {
+            load_plugin_textdomain(
+                'wp-slider',
+                false,
+                dirname(plugin_basename(__FILE__)).'/languages'
+            );
         }
     }
 }

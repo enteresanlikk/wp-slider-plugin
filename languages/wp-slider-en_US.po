@@ -1,0 +1,107 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Slider\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-09 22:25+0000\n"
+"PO-Revision-Date: 2023-06-09 22:25+0000\n"
+"Last-Translator: \n"
+"Language-Team: English (United States)\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.4; wp-6.2\n"
+"X-Domain: wp-slider"
+
+#. Author of the plugin
+msgid "Bilal Demir"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:57
+msgid "Display Bullets"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:24
+msgid "How does it work?"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://bilaldemir.dev"
+msgstr ""
+
+#: post-types/class.wp-slider_post-type.php:97 views/metabox.php:14
+msgid "Link Text"
+msgstr ""
+
+#: post-types/class.wp-slider_post-type.php:98 views/metabox.php:31
+msgid "Link URL"
+msgstr ""
+
+#: views/settings-page.php:14
+msgid "Main Options"
+msgstr ""
+
+#: inc/functions.php:5
+msgid "No image available"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:31 views/settings-page.php:17
+msgid "Other Options"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:98
+msgid "Please, write title"
+msgstr ""
+
+#: views/settings-page.php:29
+msgid "Save Settings"
+msgstr ""
+
+#: index.php:106
+msgid "Settings Saved"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:38
+msgid "Shortcode"
+msgstr ""
+
+#: post-types/class.wp-slider_post-type.php:27
+msgid "Slider"
+msgstr ""
+
+#: post-types/class.wp-slider_post-type.php:53
+msgid "Slider Settings"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:68
+msgid "Slider Style"
+msgstr ""
+
+#: inc/class.wp-slider_setting.php:46
+msgid "Slider Title"
+msgstr ""
+
+#: post-types/class.wp-slider_post-type.php:23
+#: post-types/class.wp-slider_post-type.php:24
+#: post-types/class.wp-slider_post-type.php:26
+msgid "Sliders"
+msgstr ""
+
+#: index.php:88 index.php:89
+msgid "WP Add New Slide"
+msgstr ""
+
+#: index.php:78 index.php:79
+msgid "WP Manage Slides"
+msgstr ""
+
+#. Name of the plugin
+#: index.php:69
+msgid "WP Slider"
+msgstr ""
+
+#: index.php:68
+msgid "WP Slider Options"
+msgstr ""

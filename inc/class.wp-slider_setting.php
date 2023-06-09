@@ -21,21 +21,21 @@ if(!class_exists('WP_Slider_Settings')) {
 
             add_settings_section(
                 'wp_slider_main_section',
-                __('How does it work?', 'wp-slider'),
+                esc_html__('How does it work?', 'wp-slider'),
                 null,
                 'wp_slider_page_1'
             );
 
             add_settings_section(
                 'wp_slider_second_section',
-                __('Other Options', 'wp-slider'),
+                esc_html__('Other Options', 'wp-slider'),
                 null,
                 'wp_slider_page_2'
             );
 
             add_settings_field(
                 'wp_slider_shortcode',
-                __('Shortcode', 'wp-slider'),
+                esc_html__('Shortcode', 'wp-slider'),
                 array($this, 'shortcode_callback'),
                 'wp_slider_page_1',
                 'wp_slider_main_section'
@@ -43,7 +43,7 @@ if(!class_exists('WP_Slider_Settings')) {
 
             add_settings_field(
                 'wp_slider_title',
-                __('Slider Title', 'wp-slider'),
+                esc_html__('Slider Title', 'wp-slider'),
                 array($this, 'slider_title_callback'),
                 'wp_slider_page_2',
                 'wp_slider_second_section',
@@ -54,7 +54,7 @@ if(!class_exists('WP_Slider_Settings')) {
 
             add_settings_field(
                 'wp_slider_bullets',
-                __('Display Bullets', 'wp-slider'),
+                esc_html__('Display Bullets', 'wp-slider'),
                 array($this, 'bullets_callback'),
                 'wp_slider_page_2',
                 'wp_slider_second_section',
@@ -65,7 +65,7 @@ if(!class_exists('WP_Slider_Settings')) {
 
             add_settings_field(
                 'wp_slider_style',
-                __('Slider Style', 'wp-slider'),
+                esc_html__('Slider Style', 'wp-slider'),
                 array($this, 'slider_style_callback'),
                 'wp_slider_page_2',
                 'wp_slider_second_section',
@@ -86,6 +86,12 @@ if(!class_exists('WP_Slider_Settings')) {
         }
 
         public function validate($input) {
+            if(!is_array($input)) {
+                return;
+            }
+            if(count($input) == 0) {
+                return;
+            }
             $output = array();
 
             foreach($input as $key => $value) {
@@ -95,7 +101,7 @@ if(!class_exists('WP_Slider_Settings')) {
                             add_settings_error(
                                 'wp_slider_settings',
                                 'wp_slider_title_error',
-                                __('Please, write title', 'wp-slider'),
+                                esc_html__('Please, write title', 'wp-slider'),
                                 'error'
                             );
                         }

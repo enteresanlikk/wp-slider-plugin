@@ -11,7 +11,7 @@ $link_url = get_post_meta($post_id, 'wp_slider_link_url', true) ?? '';
     <tr>
         <th>
             <label for="wp_slider_link_text">
-                Link Text
+                <?= esc_html_e('Link Text', 'wp-slider') ?>
             </label>
         </th>
         <td>
@@ -28,7 +28,7 @@ $link_url = get_post_meta($post_id, 'wp_slider_link_url', true) ?? '';
     <tr>
         <th>
             <label for="wp_slider_link_url">
-                Link URL
+                <?= esc_html_e('Link URL', 'wp-slider') ?>
             </label>
         </th>
         <td>

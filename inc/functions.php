@@ -2,7 +2,8 @@
 
 if(!function_exists('get_the_thumbnail_placeholder_image')) {
     function get_the_thumbnail_placeholder_image() {
-        return '<img src="' . WP_SLIDER_URL . 'assets/images/placeholder.jpg" alt="Placeholder" class="wp-slider__image">';
+        $placeholder_alt_text = esc_html__('No image available', 'wp-slider');
+        return '<img src="' . WP_SLIDER_URL . 'assets/images/placeholder.jpg" alt="'.$placeholder_alt_text.'" class="wp-slider__image">';
     }
 }
 

@@ -11,10 +11,10 @@ $tab = $_GET['tab'] ?? 'main';
 
     <div class="nav-tab-wrapper">
         <a href="?page=wp-slider-admin&tab=main" class="nav-tab <?= $tab == 'main' ? 'nav-tab-active' : '' ?>">
-            Main Options
+            <?= esc_html_e('Main Options', 'wp-slider') ?>
         </a>
         <a href="?page=wp-slider-admin&tab=other" class="nav-tab <?= $tab == 'other' ? 'nav-tab-active' : '' ?>">
-            Other Options
+            <?= esc_html_e('Other Options', 'wp-slider') ?>
         </a>
     </div>
 
@@ -26,7 +26,7 @@ $tab = $_GET['tab'] ?? 'main';
             } else if($tab == 'other') {
                 do_settings_sections('wp_slider_page_2');
             }
-            submit_button();
+            submit_button(esc_html__('Save Settings', 'wp-slider'));
         ?>
     </form>
 </div>

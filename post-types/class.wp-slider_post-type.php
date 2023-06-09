@@ -20,11 +20,11 @@ if(!class_exists('WP_Slider_CPT')) {
             register_post_type(
                 'wp-slider',
                 array(
-                    'label' => __('Sliders', 'wp-slider'),
-                    'description' => __('Sliders', 'wp-slider'),
+                    'label' => esc_html__('Sliders', 'wp-slider'),
+                    'description' => esc_html__('Sliders', 'wp-slider'),
                     'labels' => array(
-                        'name' => __('Sliders', 'wp-slider'),
-                        'singular_name' => __('Slider', 'wp-slider')
+                        'name' => esc_html__('Sliders', 'wp-slider'),
+                        'singular_name' => esc_html__('Slider', 'wp-slider')
                     ),
                     'public' => true,
                     'supports' => array(
@@ -50,7 +50,7 @@ if(!class_exists('WP_Slider_CPT')) {
         public function add_meta_boxes() {
             add_meta_box(
                 'wp-slider-meta-box',
-                __('Slider Settings', 'wp-slider'),
+                esc_html__('Slider Settings', 'wp-slider'),
                 array($this, 'add_inner_meta_boxes'),
                 'wp-slider',
                 'normal',
